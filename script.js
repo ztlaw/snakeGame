@@ -93,13 +93,13 @@ const moveSnake = () => {
             }
         break;
             //opposite
-        case downDir:
-            currentHeadPosition = currentHeadPosition + linePixelCount
-            const isHeadAtBottom = currentHeadPosition > linePixelCount -1
-            if (isHeadAtBottom) {
-                currentHeadPosition = currentHeadPosition - totalPixelCount
-            }
-        break; 
+            case downDir:
+                currentHeadPosition = currentHeadPosition + linePixelCount
+                  const isHeadAtBottom = currentHeadPosition > totalPixelCount -1; // this line 98 on codepen
+                  if (isHeadAtBottom) {
+                  currentHeadPosition = currentHeadPosition - totalPixelCount
+                }
+                break; 
 
         default:
 
