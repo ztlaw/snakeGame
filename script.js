@@ -41,9 +41,9 @@ const rightDir = 39
 const downDir = 40
 
 //defining current direction
-const snakeCurrentDir = rightDir
+let snakeCurrentDir = rightDir
 
-const changeDirection = newDirectionCode => {
+let changeDirection = newDirectionCode => {
     if(newDirectionCode == snakeCurrentDir) return; // if new direction = same direction snake is currently moving, return aka do nothing
 
 //these else if statements detect that the snakes movement, making sure its not already moving in its opposite direction
@@ -99,7 +99,7 @@ const moveSnake = () => {
             if (isHeadAtBottom) {
                 currentHeadPosition = currentHeadPosition - totalPixelCount
             }
-        break;
+        break; 
 
         default:
 
@@ -112,6 +112,7 @@ const moveSnake = () => {
     //if/else statement to declare the game over with an ALERT when a snake eats itself.
     //if the snake head moves onto a pixel with the classlist of snakeBodyPixel, end game
     if( nextSnakeHeadPixel.classList.contains("snakeBodyPixel") ){
+        console.log('this works')
         clearInterval(moveSnakeInterval)
         alert(`Game over. You have eaten ${totalFoodEaten} and you have 
         traveled ${totalDistanceTraveled}`);
@@ -120,10 +121,36 @@ const moveSnake = () => {
 
     nextSnakeHeadPixel.classList.add('snakeBodyPixel')
 
+
+    //remove snake styling to keep snake at appropriate length
+    setTimeout( () => {
+        nextSnakeHeadPixel.classList.remove('snakeBodyPixel')
+    }, snakeLength)
+//declaring what to do when a snake encounters a food pixel. aka when you score in snake
+    if(currentHeadPosition == currentFoodPosition){
+        totalFoodEaten++
+        document.getElementById('pointsEarned').innerText = totalFoodEaten
+        snakeLength = snakeLength + 100
+        createFood()
+    }
 }
+//calling initial function to begin game
+createGameBoardPixels()
+createFood()
 
-// createGameBoardPixels()
-// createFood()
-
+//setting animation speed of snake
 let moveSnakeInterval = setInterval(moveSnake, 100)
  
+
+addEventListener('keydown', e => changeDirection(e.keyCode))
+//adding variables for on-screen buttons. (linking HTML elements to JS)
+const leftButton = document.getElementById('leftButton')
+const rightButton = document.getElementById('rightButton')
+const upButton = document.getElementById('upButton')
+const downButton = document.getElementById('downButton')
+
+//adding listeners for each arrow key
+leftButton.onclick = () => changeDirection(leftDir)
+rightButton.onclick = () => changeDirection(rightDir)
+upButton.onclick = () => changeDirection(upDir)
+downButton.onclick = () => changeDirection(downDir)
