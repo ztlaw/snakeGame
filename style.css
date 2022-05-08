@@ -27,13 +27,13 @@ float: left;
 }
 
 .food{
-    background-color: #934de8;
+    background-color: #39FF14;
     box-shadow: 0px 0px 10px #476e91;
 }
 
 .snakeBodyPixel{
-    background-color: #782668;
-    box-shadow: 0px 0px 5px #f2d8ed
+    background-color: #FF3131;
+    box-shadow: 0px 0px 5px #933d41
 }
 
 #scoreContainer{

@@ -139,7 +139,7 @@ createGameBoardPixels()
 createFood()
 
 //setting animation speed of snake
-let moveSnakeInterval = setInterval(moveSnake, 100)
+let moveSnakeInterval = setInterval(moveSnake, 50)
  
 
 addEventListener('keydown', e => changeDirection(e.keyCode))
